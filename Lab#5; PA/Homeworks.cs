@@ -17,7 +17,7 @@ namespace Lab_5__PA
             Description = description;
             Status = status;
         }
-        public void AddHomeworks(ref List<Homeworks> homeworksList)
+        public static void AddHomeworks(ref List<Homeworks> homeworksList)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -49,7 +49,7 @@ namespace Lab_5__PA
                         Console.ResetColor();
                         Console.ReadKey();
                     }
-                } while (Status == "Pendiente" || Status == "Completado");
+                } while (homework.Status == "Pendiente" || homework.Status == "Completado");
             }
             else
             {
@@ -59,7 +59,7 @@ namespace Lab_5__PA
                 Console.ReadKey();
             }
         }
-        public void ShowHomeworks(ref List<Homeworks> homeworksList)
+        public static void ShowHomeworks(ref List<Homeworks> homeworksList)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -85,7 +85,7 @@ namespace Lab_5__PA
             }
             Console.ReadKey();
         }
-        public void ChangeStatus(ref List<Homeworks> homeworksList)
+        public static void ChangeStatus(ref List<Homeworks> homeworksList)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
