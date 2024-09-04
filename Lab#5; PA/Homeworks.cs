@@ -25,32 +25,45 @@ namespace Lab_5__PA
             Console.ResetColor();
             Console.Write("\nIngrese el Nombre de la Tarea: ");
             string name = Console.ReadLine();
-            Console.Write("\nIngrese la Descripción de la Tarea: ");
-            string description = Console.ReadLine();
-            do
+            Homeworks homework = homeworksList.Find(x => x.Name == name);
+            if (homework == null)
             {
-                Console.Write("\nIngrese el Estado de la Tarea (Pendiente/Completada):");
-                string status = Console.ReadLine().ToUpper();
-                if (status == "PENDIENTE" || status == "COMPLETADA")
+                Console.Write("\nIngrese la Descripción de la Tarea: ");
+                string description = Console.ReadLine();
+                do
                 {
-                    homeworksList.Add(new Homeworks(name, description, status));
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Tarea Agregada Correctamente");
-                    Console.ResetColor();
-                    Console.ReadKey();
-                }
-                else
-                {
-                    Console.WriteLine("Ingrese un Estado Válido");
-                    Console.ReadKey();
-                }
-            } while (Status == "Pendiente" || Status == "Completado");
+                    Console.Write("\nIngrese el Estado de la Tarea (Pendiente/Completado):");
+                    string status = Console.ReadLine().ToUpper();
+                    if (status == "PENDIENTE" || status == "COMPLETADO")
+                    {
+                        homeworksList.Add(new Homeworks(name, description, status));
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Tarea Agregada Correctamente");
+                        Console.ResetColor();
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Ingrese un Estado Válido");
+                        Console.ResetColor();
+                        Console.ReadKey();
+                    }
+                } while (Status == "Pendiente" || Status == "Completado");
+            }
+            else
+            {
+                Console.ForegroundColor= ConsoleColor.Red;
+                Console.WriteLine("Tarea con el Mismo Nombre");
+                Console.ResetColor();
+                Console.ReadKey();
+            }
         }
         public void ShowHomeworks(ref List<Homeworks> homeworksList)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("--- Mostrar Tareas---");
+            Console.WriteLine("--- Mostrar Tareas ---");
             Console.ResetColor();
             foreach (Homeworks homeworksPending in homeworksList)
             {
@@ -72,6 +85,40 @@ namespace Lab_5__PA
             }
             Console.ReadKey();
         }
-
+        public void ChangeStatus(ref List<Homeworks> homeworksList)
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("--- Cambiar Estado ---");
+            Console.ResetColor();
+            Console.Write("Ingrese el Nombre de la Tarea: ");
+            string name = Console.ReadLine();
+            Homeworks homework = homeworksList.Find(x => x.Name == name);
+            if (homework != null)
+            {
+                if (homework.Status == "PENDIENTE")
+                {
+                    homework.Status = "COMPLETADO";
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Estado Actualizado Correctamente");
+                    Console.ResetColor();
+                    Console.ReadKey();
+                }
+                else if (homework.Status == "COMPLETADO")
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Tarea Completada");
+                    Console.ResetColor();
+                    Console.ReadKey();
+                }
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Tarea Inexistente");
+                Console.ResetColor();
+                Console.ReadKey();
+            }
+        }
     }
 }
