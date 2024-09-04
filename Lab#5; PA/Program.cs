@@ -20,9 +20,9 @@ int MenuHomeworks()
 {
     Console.Clear();
     Console.ForegroundColor = ConsoleColor.Cyan;
-    Console.WriteLine("\n--- Sistema de Control de Tareas ---");
+    Console.WriteLine("--- Sistema de Control de Tareas ---");
     Console.ResetColor();
-    Console.WriteLine("1. Agregar Tareas");
+    Console.WriteLine("\n1. Agregar Tareas");
     Console.WriteLine("2. Mostrar Tareas");
     Console.WriteLine("3. Cambiar Estado");
     Console.WriteLine("4. Salir");
@@ -56,7 +56,7 @@ void SwitchFirsMenu()
             break;
         default:
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Ingrese una Opción Válida (1 - 4)");
+            Console.WriteLine("\nIngrese una Opción Válida (1 - 4)");
             Console.ResetColor();
             Console.ReadKey();
             break;
